@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section>
+<div class="card bg-dark text-white" style="height: 32rem">
+  <img src="https://images.pexels.com/photos/963278/pexels-photo-963278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="card-img img-fluid" alt="..." style="max-height: 100%;">
+  <div class="card-img-overlay">
+    <h5 class="card-title"><strong>SITE OF THE DAY</strong></h5>
+    <p class="card-text">August 2019</p>
+    <p class="card-text"></p>
+  </div>
+</div>
+<hr>
+<div class="row">
+  
+{% for project in projects%}
+
+
+  <div class="col-md-4">
+    <div class="card text-center p-2 m-2">
+      <img src={{project.project_image.url}} class="img-fluid">
+      <p class="card-text"><strong>{{project.project_name}}</strong></p>
+      <p class="card-text">{{project.date_posted}}</p>
+      <a class="card-text text-center" href="{{project.project_url}}">Visit site</a>
+      <hr>
+      <div class="row">
+          <div class="col-md-6">
+            <img  src="{{project.user.profile.image.url}}" width="35" height="35" class="rounded-circle border userimage">
+            <p class="card-text">BY <strong>{{project.user}}</strong></p>
+          </div>
+          <div class="col-md-6">
+            <a href="{% url 'review' project.id %}">
+                    <button class="btn btn-outline-info btn-sm">Rate</button>
+                </a>
+          </div>
+      </div>
+     
+   </div> 
+  
+</div>
+ {% endfor %}
+</div>
+
+
+
+
+</section>
+
+
+{% endblock %}
